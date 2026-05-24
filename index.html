@@ -14,19 +14,19 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #4A2B6D;
+            color: #2d2d2d;
         }
 
-        /* Color Scheme - Purple/Mauve Theme */
+        /* Color Scheme - #cd3161 Theme */
         :root {
-            --primary: #8B5FBF;
-            --primary-dark: #6B3FA0;
-            --primary-light: #B89AD9;
-            --secondary: #D9A7B0;
-            --secondary-dark: #C27E8A;
-            --light-bg: #F5EFFF;
-            --dark: #4A2B6D;
-            --gray: #8A7A9B;
+            --primary: #cd3161;
+            --primary-dark: #a82650;
+            --primary-light: #e15c84;
+            --secondary: #f5a3b9;
+            --secondary-dark: #e884a0;
+            --light-bg: #fff0f3;
+            --dark: #2d1a22;
+            --gray: #8a6a75;
         }
 
         /* Navigation */
@@ -56,7 +56,7 @@
         }
 
         .logo span {
-            color: var(--secondary);
+            color: var(--primary-light);
         }
 
         .nav-links {
@@ -84,7 +84,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(107, 63, 160, 0.9), rgba(139, 95, 191, 0.85)), url('https://images.unsplash.com/photo-1488521787991-1111c11f8d0a?w=1200');
+            background: linear-gradient(135deg, rgba(205, 49, 97, 0.92), rgba(205, 49, 97, 0.75)), url('https://images.unsplash.com/photo-1488521787991-1111c11f8d0a?w=1200');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -112,7 +112,7 @@
             display: inline-block;
             padding: 1rem 2rem;
             background: white;
-            color: var(--primary-dark);
+            color: var(--primary);
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
@@ -123,7 +123,7 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            background: var(--primary-light);
+            background: var(--primary);
             color: white;
         }
 
@@ -136,7 +136,7 @@
 
         .btn-outline:hover {
             background: white;
-            color: var(--primary-dark);
+            color: var(--primary);
         }
 
         /* Sections */
@@ -176,7 +176,7 @@
         .about-image img {
             width: 100%;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(107, 63, 160, 0.2);
+            box-shadow: 0 20px 40px rgba(205, 49, 97, 0.2);
         }
 
         /* Stats Section */
@@ -227,7 +227,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(107, 63, 160, 0.95));
+            background: linear-gradient(transparent, rgba(205, 49, 97, 0.95));
             color: white;
             padding: 1rem;
             transform: translateY(100%);
