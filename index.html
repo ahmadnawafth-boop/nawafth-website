@@ -16,22 +16,30 @@
     <style>
         /* ===== CSS Variables ===== */
         :root {
+            /* Primary Colors - from logo */
             --color-primary: #2D0A3E;
             --color-secondary: #4A0E5F;
             --color-accent-1: #8B1A3A;
             --color-accent-2: #C4284F;
             --color-accent-3: #E86A8A;
+            
+            /* Gradients */
             --gradient-main: linear-gradient(135deg, #2D0A3E 0%, #4A0E5F 40%, #8B1A3A 75%, #C4284F 100%);
             --gradient-card: linear-gradient(145deg, rgba(45,10,62,0.95), rgba(74,14,95,0.85));
             --gradient-glow: linear-gradient(135deg, rgba(139,26,58,0.3), rgba(196,40,79,0.1));
+            
+            /* Effects */
             --glass-bg: rgba(255,255,255,0.08);
             --glass-border: rgba(255,255,255,0.12);
             --shadow-primary: 0 8px 40px rgba(45,10,62,0.4);
             --shadow-hover: 0 16px 60px rgba(45,10,62,0.5);
+            
+            /* Typography */
             --font-ar: 'Tajawal', sans-serif;
             --font-en: 'Inter', sans-serif;
         }
 
+        /* ===== Reset & Base ===== */
         * {
             margin: 0;
             padding: 0;
@@ -58,11 +66,13 @@
         body.lang-en .ar-only { display: none; }
         body:not(.lang-en) .en-only { display: none; }
 
+        /* ===== Scrollbar ===== */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--color-primary); }
         ::-webkit-scrollbar-thumb { background: var(--color-accent-2); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--color-accent-3); }
 
+        /* ===== Particles Background ===== */
         #particles-canvas {
             position: fixed;
             top: 0;
@@ -73,6 +83,7 @@
             pointer-events: none;
         }
 
+        /* ===== Utility ===== */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -121,6 +132,7 @@
             margin: 0 auto;
         }
 
+        /* ===== Language Toggle ===== */
         .lang-toggle {
             position: fixed;
             top: 20px;
@@ -159,6 +171,7 @@
             color: white;
         }
 
+        /* ===== Navbar ===== */
         .navbar {
             position: fixed;
             top: 0;
@@ -288,6 +301,7 @@
             transform: scale(1.1);
         }
 
+        /* ===== Hero ===== */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -407,6 +421,7 @@
             font-size: 1.2rem;
         }
 
+        /* ===== Hero Logo - IMPROVED ===== */
         .hero-logo-wrapper {
             display: flex;
             justify-content: center;
@@ -424,6 +439,7 @@
             justify-content: center;
         }
 
+        /* Glow ring around logo - more subtle */
         .hero-logo-container::before {
             content: '';
             position: absolute;
@@ -458,6 +474,7 @@
             50% { transform: scale(1.05); opacity: 0.7; }
         }
 
+        /* Logo image - high quality display */
         .hero-logo-img {
             position: relative;
             width: 100%;
@@ -480,6 +497,7 @@
             50% { transform: translateY(-12px) scale(1.01); }
         }
 
+        /* Floating decorations */
         .floating-dots {
             position: absolute;
             width: 100%;
@@ -509,6 +527,7 @@
             75% { transform: translate(30px, -20px); }
         }
 
+        /* ===== About Section ===== */
         .about-section {
             background: var(--color-primary);
             position: relative;
@@ -632,6 +651,7 @@
             opacity: 0.6;
         }
 
+        /* ===== Programs Section ===== */
         .programs-section {
             background: linear-gradient(180deg, var(--color-primary), rgba(45,10,62,0.9));
             position: relative;
@@ -717,6 +737,7 @@
             gap: 0.8rem;
         }
 
+        /* ===== Gallery Section - NEW IMAGES ===== */
         .gallery-section {
             background: var(--color-primary);
         }
@@ -779,6 +800,7 @@
             opacity: 0.7;
         }
 
+        /* ===== CTA Section ===== */
         .cta-section {
             background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
             position: relative;
@@ -826,6 +848,7 @@
             box-shadow: 0 8px 40px rgba(0,0,0,0.3);
         }
 
+        /* ===== Contact Section ===== */
         .contact-section {
             background: var(--color-primary);
         }
@@ -948,6 +971,7 @@
             box-shadow: 0 8px 30px rgba(196,40,79,0.3);
         }
 
+        /* ===== Footer ===== */
         .footer {
             background: rgba(0,0,0,0.3);
             border-top: 1px solid rgba(255,255,255,0.05);
@@ -1034,6 +1058,7 @@
             font-size: 0.85rem;
         }
 
+        /* ===== Responsive ===== */
         @media (max-width: 992px) {
             .hero-grid {
                 grid-template-columns: 1fr;
@@ -1162,4 +1187,768 @@
 
             .section-padding {
                 padding: 3rem 0;
-           
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .about-stats-mini {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== Language Toggle ===== -->
+    <div class="lang-toggle" id="langToggle">
+        <button class="lang-btn active" data-lang="ar" onclick="switchLanguage('ar')">عربي</button>
+        <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')">ENG</button>
+    </div>
+
+    <!-- ===== Particles Canvas ===== -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ===== Navigation ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <img src="https://i.ibb.co/HLr99kQB/IMG-20260425-WA0072.jpg" alt="نوافذ" class="nav-logo">
+                <span class="nav-brand-text">
+                    <span class="brand-accent">نوافذ</span>
+                    <span class="ar-only">للإغاثة</span>
+                    <span class="en-only">Nawafth</span>
+                </span>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active"><span class="ar-only">الرئيسية</span><span class="en-only">Home</span></a></li>
+                <li><a href="#about"><span class="ar-only">عنّا</span><span class="en-only">About</span></a></li>
+                <li><a href="#programs"><span class="ar-only">برامجنا</span><span class="en-only">Programs</span></a></li>
+                <li><a href="#gallery"><span class="ar-only">المعرض</span><span class="en-only">Gallery</span></a></li>
+                <li><a href="#contact" class="nav-cta"><span class="ar-only">تواصل</span><span class="en-only">Contact</span></a></li>
+            </ul>
+
+            <button class="mobile-toggle" id="mobileToggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== Hero ===== -->
+    <section id="home" class="hero">
+        <div class="floating-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="section-badge">
+                        <span class="ar-only">منظمة إنسانية</span>
+                        <span class="en-only">Humanitarian Organization</span>
+                    </span>
+                    <h1>
+                        <span class="ar-only">نوافذ</span>
+                        <span class="en-only">Nawafth</span>
+                        <br>
+                        <span class="highlight">
+                            <span class="ar-only">للإغاثة والتنمية</span>
+                            <span class="en-only">Relief & Development</span>
+                        </span>
+                    </h1>
+                    <p>
+                        <span class="ar-only">نُمكّن المجتمعات ونُغيّر الحياة من خلال التنمية المستدامة والمساعدات الإنسانية</span>
+                        <span class="en-only">Empowering communities and transforming lives through sustainable development and humanitarian aid</span>
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <span class="ar-only">انضم إلينا</span>
+                            <span class="en-only">Join Us</span>
+                            <i class="fas fa-arrow-left btn-icon"></i>
+                        </a>
+                        <a href="#about" class="btn btn-outline">
+                            <span class="ar-only">تعرف علينا</span>
+                            <span class="en-only">Learn More</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-logo-wrapper">
+                    <div class="hero-logo-container">
+                        <img src="https://i.ibb.co/HLr99kQB/IMG-20260425-WA0072.jpg" alt="نوافذ Logo" class="hero-logo-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section id="about" class="about-section section-padding">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800" alt="دعم الأطفال">
+                    <div class="image-overlay"></div>
+                    <div class="experience-badge">
+                        <span class="number">5+</span>
+                        <span class="label">
+                            <span class="ar-only">سنوات من العطاء</span>
+                            <span class="en-only">Years of Service</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="about-text">
+                    <span class="section-badge">
+                        <span class="ar-only">من نحن</span>
+                        <span class="en-only">About Us</span>
+                    </span>
+                    <h2>
+                        <span class="ar-only">قصتنا ورسالتنا</span>
+                        <span class="en-only">Our Story & Mission</span>
+                    </h2>
+                    <p>
+                        <span class="ar-only">نوافذ للإغاثة والتنمية منظمة إنسانية تُكرّس جهودها لتقديم حلول مستدامة للمجتمعات المحتاجة منذ أكثر من 5 سنوات. نعمل على تخفيف المعاناة وإحداث تغيير دائم.</span>
+                        <span class="en-only">Nawafth for Relief and Development is a humanitarian organization dedicated to providing sustainable solutions for communities in need for over 5 years. We work to alleviate suffering and create lasting change.</span>
+                    </p>
+                    <p>
+                        <span class="ar-only">يجمع نهجنا بين الإغاثة الطارئة وبرامج التنمية طويلة الأجل، لضمان أن المجتمعات لا تنجو من الأزمات فحسب، بل تزدهر بعدها. نؤمن بأن كل طفل يستحق فرصة متساوية في الحياة، بغض النظر عن قدراته.</span>
+                        <span class="en-only">Our approach combines emergency relief with long-term development programs, ensuring communities not only survive crises but thrive afterward. We believe every child deserves an equal opportunity in life, regardless of their abilities.</span>
+                    </p>
+
+                    <div class="about-stats-mini">
+                        <div class="stat-mini">
+                            <span class="num">50K+</span>
+                            <span class="lbl">
+                                <span class="ar-only">حياة تأثرت</span>
+                                <span class="en-only">Lives Impacted</span>
+                            </span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="num">15+</span>
+                            <span class="lbl">
+                                <span class="ar-only">مشروع نشط</span>
+                                <span class="en-only">Active Projects</span>
+                            </span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="num">200+</span>
+                            <span class="lbl">
+                                <span class="ar-only">متطوع</span>
+                                <span class="en-only">Volunteers</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Programs ===== -->
+    <section id="programs" class="programs-section section-padding">
+        <div class="container">
+            <div style="text-align: center;">
+                <span class="section-badge">
+                    <span class="ar-only">برامجنا</span>
+                    <span class="en-only">Our Programs</span>
+                </span>
+                <h2 class="section-title">
+                    <span class="ar-only">ما <span class="highlight">نقدمه</span></span>
+                    <span class="en-only">What <span class="highlight">We Offer</span></span>
+                </h2>
+                <p class="section-subtitle">
+                    <span class="ar-only">برامج متنوعة تهدف لتمكين المجتمعات وتحسين جودة الحياة</span>
+                    <span class="en-only">Diverse programs aimed at empowering communities and improving quality of life</span>
+                </p>
+            </div>
+
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon">🍽️</div>
+                    <h3>
+                        <span class="ar-only">الأمن الغذائي</span>
+                        <span class="en-only">Food Security</span>
+                    </h3>
+                    <p>
+                        <span class="ar-only">توفير وجبات غذائية متكاملة للأسر المتضررة والنازحة</span>
+                        <span class="en-only">Providing comprehensive meals for affected and displaced families</span>
+                    </p>
+                    <a href="#" class="learn-more">
+                        <span class="ar-only">اقرأ المزيد</span>
+                        <span class="en-only">Learn More</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">📚</div>
+                    <h3>
+                        <span class="ar-only">التعليم</span>
+                        <span class="en-only">Education</span>
+                    </h3>
+                    <p>
+                        <span class="ar-only">بناء مدارس وتوفير مستلزمات تعليمية للأطفال والمجتمعات</span>
+                        <span class="en-only">Building schools and providing educational supplies for children</span>
+                    </p>
+                    <a href="#" class="learn-more">
+                        <span class="ar-only">اقرأ المزيد</span>
+                        <span class="en-only">Learn More</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">🏥</div>
+                    <h3>
+                        <span class="ar-only">الرعاية الصحية</span>
+                        <span class="en-only">Healthcare</span>
+                    </h3>
+                    <p>
+                        <span class="ar-only">مخيمات طبية مجانية وخدمات صحية للمجتمعات المحتاجة</span>
+                        <span class="en-only">Free medical camps and health services for communities in need</span>
+                    </p>
+                    <a href="#" class="learn-more">
+                        <span class="ar-only">اقرأ المزيد</span>
+                        <span class="en-only">Learn More</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">💧</div>
+                    <h3>
+                        <span class="ar-only">المياه النظيفة وقطاع التنمية والاسكان</span>
+                        <span class="en-only">Clean Water</span>
+                    </h3>
+                    <p>
+                        <span class="ar-only">توفير مياه شرب آمنة ومشاريع صرف صحي للمجتمعات</span>
+                        <span class="en-only">Providing safe drinking water and sanitation projects</span>
+                    </p>
+                    <a href="#" class="learn-more">
+                        <span class="ar-only">اقرأ المزيد</span>
+                        <span class="en-only">Learn More</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">👩‍👧</div>
+                    <h3>
+                        <span class="ar-only">تمكين المرأة</span>
+                        <span class="en-only">Women Empowerment</span>
+                    </h3>
+                    <p>
+                        <span class="ar-only">برامج تدريب ودعم للنساء لتعزيز دورهن في المجتمع</span>
+                        <span class="en-only">Training and support programs for women to enhance their role</span>
+                    </p>
+                    <a href="#" class="learn-more">
+                        <span class="ar-only">اقرأ المزيد</span>
+                        <span class="en-only">Learn More</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">🤝</div>
+                    <h3>
+                        <span class="ar-only">دعم المجتمع والتنمية والاسكان</span>
+                        <span class="en-only">Community Support</span>
+                    </h3>
+                    <p>
+                        <span class="ar-only">برامج تنموية شاملة لبناء مجتمعات أقوى وأكثر تماسكاً</span>
+                        <span class="en-only">Comprehensive development programs to build stronger communities</span>
+                    </p>
+                    <a href="#" class="learn-more">
+                        <span class="ar-only">اقرأ المزيد</span>
+                        <span class="en-only">Learn More</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Gallery - NEW IMAGES (Children with Down Syndrome) ===== -->
+        <!-- ===== Gallery - NEW IMAGES (Children with Down Syndrome) ===== -->
+    <section id="gallery" class="gallery-section section-padding">
+        <div class="container">
+            <div style="text-align: center;">
+                <span class="section-badge">
+                    <span class="ar-only">معرض الصور</span>
+                    <span class="en-only">Gallery</span>
+                </span>
+                <h2 class="section-title">
+                    <span class="ar-only">لحظات <span class="highlight">من عملنا</span></span>
+                    <span class="en-only">Moments <span class="highlight">From Our Work</span></span>
+                </h2>
+                <p class="section-subtitle">
+                    <span class="ar-only">نحو عالم أكثر إنسانية للجميع</span>
+                    <span class="en-only">Towards a more humane world for everyone</span>
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- الصورة 1: دعم أطفال متلازمة داون -->
+                <div class="gallery-item">
+                    <img src="https://iili.io/Cw0oD3N.jpg" alt="أطفال متلازمة داون">
+                    <div class="gallery-overlay">
+                        <h4>
+                            <span class="ar-only">دعم أطفال متلازمة داون</span>
+                            <span class="en-only">Support for Children with Down Syndrome</span>
+                        </h4>
+                        <p>
+                            <span class="ar-only">برامج تأهيلية متخصصة</span>
+                            <span class="en-only">Specialized rehabilitation programs</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- الصورة 2: التعليم الخاص -->
+                <div class="gallery-item">
+                    <img src="https://iili.io/Cw0YORR.jpg" alt="تعليم خاص">
+                    <div class="gallery-overlay">
+                        <h4>
+                            <span class="ar-only">التعليم الخاص</span>
+                            <span class="en-only">Special Education</span>
+                        </h4>
+                        <p>
+                            <span class="ar-only">توفير فرص تعليمية متكافئة</span>
+                            <span class="en-only">Providing equal educational opportunities</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- الصورة 3: الدعم الأسري -->
+                <div class="gallery-item">
+                    <img src="https://iili.io/Cw0l2oB.jpg" alt="دعم أسري">
+                    <div class="gallery-overlay">
+                        <h4>
+                            <span class="ar-only">الدعم الأسري</span>
+                            <span class="en-only">Family Support</span>
+                        </h4>
+                        <p>
+                            <span class="ar-only">توعية وإرشاد للأسر</span>
+                            <span class="en-only">Awareness and guidance for families</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- الصورة 4: أطفال يبتسمون -->
+                <div class="gallery-item">
+                    <img src="https://iili.io/Cw0ly0X.jpg" alt="أطفال يبتسمون">
+                    <div class="gallery-overlay">
+                        <h4>
+                            <span class="ar-only">أطفال يبتسمون</span>
+                            <span class="en-only">Smiling Children</span>
+                        </h4>
+                        <p>
+                            <span class="ar-only">نحو مستقبل مشرق</span>
+                            <span class="en-only">Towards a bright future</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- الصورة 5: أنشطة تفاعلية -->
+                <div class="gallery-item">
+                    <img src="https://iili.io/Cw0XLoG.jpg" alt="أنشطة تفاعلية">
+                    <div class="gallery-overlay">
+                        <h4>
+                            <span class="ar-only">أنشطة تفاعلية</span>
+                            <span class="en-only">Interactive Activities</span>
+                        </h4>
+                        <p>
+                            <span class="ar-only">دمج اجتماعي وترفيهي</span>
+                            <span class="en-only">Social and recreational integration</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- الصورة 6: رعاية صحية متخصصة (جديدة) -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600" alt="رعاية صحية متخصصة">
+                    <div class="gallery-overlay">
+                        <h4>
+                            <span class="ar-only">رعاية صحية متخصصة</span>
+                            <span class="en-only">Specialized Healthcare</span>
+                        </h4>
+                        <p>
+                            <span class="ar-only">خدمات طبية مجانية</span>
+                            <span class="en-only">Free medical services</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta-section section-padding">
+        <div class="container">
+            <div class="cta-content">
+                <h2>
+                    <span class="ar-only">كن جزءاً من <span style="color:#FFD700;">التغيير</span></span>
+                    <span class="en-only">Be Part of <span style="color:#FFD700;">The Change</span></span>
+                </h2>
+                <p>
+                    <span class="ar-only">تبرعك أو تطوعك يمكن أن يُحدث فرقاً في حياة الآلاف. انضم إلينا اليوم.</span>
+                    <span class="en-only">Your donation or volunteering can make a difference in thousands of lives. Join us today.</span>
+                </p>
+                <a href="#contact" class="btn">
+                    <span class="ar-only">تواصل معنا الآن</span>
+                    <span class="en-only">Contact Us Now</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section id="contact" class="contact-section section-padding">
+        <div class="container">
+            <div style="text-align: center;">
+                <span class="section-badge">
+                    <span class="ar-only">اتصل بنا</span>
+                    <span class="en-only">Contact Us</span>
+                </span>
+                <h2 class="section-title">
+                    <span class="ar-only">تواصل <span class="highlight">معنا</span></span>
+                    <span class="en-only">Get In <span class="highlight">Touch</span></span>
+                </h2>
+                <p class="section-subtitle">
+                    <span class="ar-only">نسعد بسماعك، تواصل معنا لأي استفسار</span>
+                    <span class="en-only">We're happy to hear from you, reach out for any inquiry</span>
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>
+                        <span class="ar-only">نحن هنا لدعمك</span>
+                        <span class="en-only">We're Here to Support You</span>
+                    </h3>
+                    <p>
+                        <span class="ar-only">فريقنا مستعد للإجابة عن جميع استفساراتكم حول برامجنا وفعالياتنا وطرق التبرع والتطوع.</span>
+                        <span class="en-only">Our team is ready to answer all your questions about our programs, events, and ways to donate and volunteer.</span>
+                    </p>
+
+                    <div class="contact-item">
+                        <span class="icon"><i class="fas fa-envelope"></i></span>
+                        <div>
+                            <div style="font-weight:600;">Email</div>
+                            <span style="opacity:0.7;">info@nawafth.org</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon"><i class="fas fa-phone"></i></span>
+                        <div>
+                            <div style="font-weight:600;">
+                                <span class="ar-only">هاتف</span>
+                                <span class="en-only">Phone</span>
+                            </div>
+                            <span style="opacity:0.7;">+963 992 637 741</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+                        <div>
+                            <div style="font-weight:600;">
+                                <span class="ar-only">العنوان</span>
+                                <span class="en-only">Address</span>
+                            </div>
+                            <span style="opacity:0.7;">
+                                <span class="ar-only">سوريا - حلب - صلاح الدين - مفرق محمصة السواس</span>
+                                <span class="en-only">Syria - Aleppo - Salah al-Din - Al-Sawas Roastery Junction</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label>
+                                <span class="ar-only">الاسم الكامل</span>
+                                <span class="en-only">Full Name</span>
+                            </label>
+                            <input type="text" id="name" placeholder="أدخل اسمك / Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="email" placeholder="بريدك الإلكتروني / Your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <span class="ar-only">الموضوع</span>
+                                <span class="en-only">Subject</span>
+                            </label>
+                            <input type="text" id="subject" placeholder="موضوع الرسالة / Subject">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <span class="ar-only">الرسالة</span>
+                                <span class="en-only">Message</span>
+                            </label>
+                            <textarea id="message" rows="4" placeholder="اكتب رسالتك هنا... / Write your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">
+                            <span class="ar-only">إرسال الرسالة</span>
+                            <span class="en-only">Send Message</span>
+                            <i class="fas fa-paper-plane" style="margin-right:8px;"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="https://i.ibb.co/HLr99kQB/IMG-20260425-WA0072.jpg" alt="نوافذ">
+                    <h4>
+                        <span class="ar-only">نوافذ للإغاثة والتنمية</span>
+                        <span class="en-only">Nawafth Relief & Development</span>
+                    </h4>
+                    <p>
+                        <span class="ar-only">معاً نصنع الفرق. انضم إلينا في مهمتنا لخلق عالم أفضل للجميع.</span>
+                        <span class="en-only">Together we make a difference. Join us in our mission to create a better world for all.</span>
+                    </p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h5>
+                        <span class="ar-only">روابط سريعة</span>
+                        <span class="en-only">Quick Links</span>
+                    </h5>
+                    <a href="#home"><span class="ar-only">الرئيسية</span><span class="en-only">Home</span></a>
+                    <a href="#about"><span class="ar-only">عنّا</span><span class="en-only">About</span></a>
+                    <a href="#programs"><span class="ar-only">برامجنا</span><span class="en-only">Programs</span></a>
+                    <a href="#gallery"><span class="ar-only">المعرض</span><span class="en-only">Gallery</span></a>
+                    <a href="#contact"><span class="ar-only">اتصل بنا</span><span class="en-only">Contact</span></a>
+                </div>
+
+                <div class="footer-links">
+                    <h5>
+                        <span class="ar-only">برامجنا</span>
+                        <span class="en-only">Programs</span>
+                    </h5>
+                    <a href="#"><span class="ar-only">الأمن الغذائي</span><span class="en-only">Food Security</span></a>
+                    <a href="#"><span class="ar-only">التعليم</span><span class="en-only">Education</span></a>
+                    <a href="#"><span class="ar-only">الرعاية الصحية</span><span class="en-only">Healthcare</span></a>
+                    <a href="#"><span class="ar-only">المياه النظيفة</span><span class="en-only">Clean Water</span></a>
+                    <a href="#"><span class="ar-only">تمكين المرأة</span><span class="en-only">Women Empowerment</span></a>
+                </div>
+
+                <div class="footer-links">
+                    <h5>
+                        <span class="ar-only">الدعم</span>
+                        <span class="en-only">Support</span>
+                    </h5>
+                    <a href="#"><span class="ar-only">التبرع</span><span class="en-only">Donate</span></a>
+                    <a href="#"><span class="ar-only">التطوع</span><span class="en-only">Volunteer</span></a>
+                    <a href="#"><span class="ar-only">الشراكات</span><span class="en-only">Partnerships</span></a>
+                    <a href="#"><span class="ar-only">الأسئلة الشائعة</span><span class="en-only">FAQ</span></a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 <span class="ar-only">نوافذ للإغاثة والتنمية</span><span class="en-only">Nawafth Relief & Development</span>. <span class="ar-only">جميع الحقوق محفوظة</span><span class="en-only">All Rights Reserved</span>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JavaScript ===== -->
+    <script>
+        // ============================================================
+        // 1. LANGUAGE SWITCH
+        // ============================================================
+        function switchLanguage(lang) {
+            document.body.classList.remove('lang-ar', 'lang-en');
+            document.body.classList.add('lang-' + lang);
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) btn.classList.add('active');
+            });
+
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            const brand = document.querySelector('.nav-brand-text');
+            if (lang === 'ar') {
+                brand.innerHTML = '<span class="brand-accent">نوافذ</span> للإغاثة';
+            } else {
+                brand.innerHTML = '<span class="brand-accent">Nawafth</span> Relief';
+            }
+
+            localStorage.setItem('nawafth-lang', lang);
+        }
+
+        const savedLang = localStorage.getItem('nawafth-lang') || 'ar';
+        switchLanguage(savedLang);
+
+        // ============================================================
+        // 2. PARTICLES BACKGROUND
+        // ============================================================
+        (function initParticles() {
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let w, h;
+            const particles = [];
+            const count = 50;
+
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * w;
+                    this.y = Math.random() * h;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.3;
+                    this.speedY = (Math.random() - 0.5) * 0.3;
+                    this.opacity = Math.random() * 0.25 + 0.05;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > w) this.speedX *= -1;
+                    if (this.y < 0 || this.y > h) this.speedY *= -1;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx*dx + dy*dy);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${0.03 * (1 - dist/120)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // ============================================================
+        // 3. NAVBAR
+        // ============================================================
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+
+        // ============================================================
+        // 4. ACTIVE LINK
+        // ============================================================
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const top = section.offsetTop - 120;
+                if (window.scrollY >= top) current = section.id;
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+            });
+        });
+
+        // ============================================================
+        // 5. SMOOTH SCROLL
+        // ============================================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ============================================================
+        // 6. CONTACT FORM
+        // ============================================================
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const lang = document.body.classList.contains('lang-en') ? 'en' : 'ar';
+            const msg = lang === 'ar' 
+                ? '✅ شكراً لتواصلك! سنرد عليك في أقرب وقت.' 
+                : '✅ Thank you for reaching out! We\'ll get back to you soon.';
+            alert(msg);
+            this.reset();
+        });
+
+        // ============================================================
+        // 7. INTERSECTION OBSERVER
+        // ============================================================
+        const fadeElements = document.querySelectorAll('.program-card, .gallery-item, .stat-mini, .about-image, .about-text, .contact-item, .contact-form');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
