@@ -16,30 +16,22 @@
     <style>
         /* ===== CSS Variables ===== */
         :root {
-            /* Primary Colors - from logo */
             --color-primary: #2D0A3E;
             --color-secondary: #4A0E5F;
             --color-accent-1: #8B1A3A;
             --color-accent-2: #C4284F;
             --color-accent-3: #E86A8A;
-            
-            /* Gradients */
             --gradient-main: linear-gradient(135deg, #2D0A3E 0%, #4A0E5F 40%, #8B1A3A 75%, #C4284F 100%);
             --gradient-card: linear-gradient(145deg, rgba(45,10,62,0.95), rgba(74,14,95,0.85));
             --gradient-glow: linear-gradient(135deg, rgba(139,26,58,0.3), rgba(196,40,79,0.1));
-            
-            /* Effects */
             --glass-bg: rgba(255,255,255,0.08);
             --glass-border: rgba(255,255,255,0.12);
             --shadow-primary: 0 8px 40px rgba(45,10,62,0.4);
             --shadow-hover: 0 16px 60px rgba(45,10,62,0.5);
-            
-            /* Typography */
             --font-ar: 'Tajawal', sans-serif;
             --font-en: 'Inter', sans-serif;
         }
 
-        /* ===== Reset & Base ===== */
         * {
             margin: 0;
             padding: 0;
@@ -66,13 +58,11 @@
         body.lang-en .ar-only { display: none; }
         body:not(.lang-en) .en-only { display: none; }
 
-        /* ===== Scrollbar ===== */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--color-primary); }
         ::-webkit-scrollbar-thumb { background: var(--color-accent-2); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--color-accent-3); }
 
-        /* ===== Particles Background ===== */
         #particles-canvas {
             position: fixed;
             top: 0;
@@ -83,7 +73,6 @@
             pointer-events: none;
         }
 
-        /* ===== Utility ===== */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -132,7 +121,6 @@
             margin: 0 auto;
         }
 
-        /* ===== Language Toggle ===== */
         .lang-toggle {
             position: fixed;
             top: 20px;
@@ -171,7 +159,6 @@
             color: white;
         }
 
-        /* ===== Navbar ===== */
         .navbar {
             position: fixed;
             top: 0;
@@ -301,7 +288,6 @@
             transform: scale(1.1);
         }
 
-        /* ===== Hero ===== */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -421,7 +407,6 @@
             font-size: 1.2rem;
         }
 
-        /* ===== Hero Logo - IMPROVED ===== */
         .hero-logo-wrapper {
             display: flex;
             justify-content: center;
@@ -439,7 +424,6 @@
             justify-content: center;
         }
 
-        /* Glow ring around logo - more subtle */
         .hero-logo-container::before {
             content: '';
             position: absolute;
@@ -474,7 +458,6 @@
             50% { transform: scale(1.05); opacity: 0.7; }
         }
 
-        /* Logo image - high quality display */
         .hero-logo-img {
             position: relative;
             width: 100%;
@@ -497,7 +480,6 @@
             50% { transform: translateY(-12px) scale(1.01); }
         }
 
-        /* Floating decorations */
         .floating-dots {
             position: absolute;
             width: 100%;
@@ -527,7 +509,6 @@
             75% { transform: translate(30px, -20px); }
         }
 
-        /* ===== About Section ===== */
         .about-section {
             background: var(--color-primary);
             position: relative;
@@ -651,7 +632,6 @@
             opacity: 0.6;
         }
 
-        /* ===== Programs Section ===== */
         .programs-section {
             background: linear-gradient(180deg, var(--color-primary), rgba(45,10,62,0.9));
             position: relative;
@@ -737,7 +717,6 @@
             gap: 0.8rem;
         }
 
-        /* ===== Gallery Section - NEW IMAGES ===== */
         .gallery-section {
             background: var(--color-primary);
         }
@@ -800,7 +779,6 @@
             opacity: 0.7;
         }
 
-        /* ===== CTA Section ===== */
         .cta-section {
             background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
             position: relative;
@@ -848,7 +826,6 @@
             box-shadow: 0 8px 40px rgba(0,0,0,0.3);
         }
 
-        /* ===== Contact Section ===== */
         .contact-section {
             background: var(--color-primary);
         }
@@ -971,7 +948,6 @@
             box-shadow: 0 8px 30px rgba(196,40,79,0.3);
         }
 
-        /* ===== Footer ===== */
         .footer {
             background: rgba(0,0,0,0.3);
             border-top: 1px solid rgba(255,255,255,0.05);
@@ -1058,7 +1034,6 @@
             font-size: 0.85rem;
         }
 
-        /* ===== Responsive ===== */
         @media (max-width: 992px) {
             .hero-grid {
                 grid-template-columns: 1fr;
@@ -1153,4 +1128,38 @@
 
             .footer-social {
                 justify-content: center;
+            }
+
+            .lang-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 0.2rem 0.4rem;
+            }
+
+            .lang-btn {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.7rem;
+            }
+
+            .hero-logo-container {
+                max-width: 240px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .section-padding {
+                padding: 3rem 0;
            
